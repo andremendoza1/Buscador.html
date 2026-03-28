@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buscador de Carpetas</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  padding:15px;
+  background:#f5f7fa;
+}
+
+h2{
+  margin-bottom:10px;
+}
+
+#buscador{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+/* CONTADOR */
+#contador{
+  font-size:12px;
+  color:#666;
+  margin-bottom:10px;
+}
+
+/* TARJETAS */
+.item{
+  background:white;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:10px;
+  border:1px solid #eee;
+  box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+
+.item strong{
+  font-size:13px;
+}
+
+.fecha{
+  font-size:12px;
+  color:#666;
+  margin:5px 0;
+}
+
+a{
+  font-size:12px;
+  color:#2c82c9;
+  text-decoration:none;
+}
+
+/* SIN RESULTADOS */
+#sinResultados{
+  display:none;
+  text-align:center;
+  padding:20px;
+  color:#999;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🔍 Buscador de Carpetas</h2>
+
+<input 
+  type="text" 
+  id="buscador" 
+  placeholder="Buscar por número, marca o texto..."
+>
+
+<div id="contador">Mostrando todos los resultados</div>
+
+<div id="lista">
+
+  <!-- ITEM -->
+  <div class="item">
+    <strong>CI-FIDDS/E/UI-2 C/D/00216/02-2025</strong>
+    <div class="fecha">27 mar y 17 abr 2026</div>
+    <a href="https://www.fgjcdmx.gob.mx/storage/app/media/Extincion%20de%20Dominio/2026/27%20de%20marzo%20y%2017%20de%20abril%202026/1.%20EDICTO%20216_02_2025%20D01%20ITALIKA.pdf" target="_blank">📄 Ver documento</a>
+  </div>
+
+  <div class="item">
+    <strong>CI-FIDE/C/UI-2 C/D/00316/08-2025</strong>
+    <div class="fecha">27 mar y 17 abr 2026</div>
+    <a href="https://www.fgjcdmx.gob.mx/storage/app/media/Extincion%20de%20Dominio/2026/27%20de%20marzo%20y%2017%20de%20abril%202026/2.%20EDICTO%20316_08_2025%20XPULSE.pdf" target="_blank">📄 Ver documento</a>
+  </div>
+
+  <div class="item">
+    <strong>CI-FIDDS/E/UI-3 C/D/00603/05-2024</strong>
+    <div class="fecha">27 mar y 17 abr 2026</div>
+    <a href="#">📄 Ver documento</a>
+  </div>
+
+  <!-- 🔁 DUPLICA AQUÍ TUS 234 REGISTROS -->
+
+</div>
+
+<div id="sinResultados">❌ No se encontraron resultados</div>
+
+<script>
+const buscador = document.getElementById("buscador");
+const items = document.querySelectorAll(".item");
+const contador = document.getElementById("contador");
+const sinResultados = document.getElementById("sinResultados");
+
+buscador.addEventListener("keyup", function() {
+  let filtro = this.value.toLowerCase();
+  let visibles = 0;
+
+  items.forEach(item => {
+    let texto = item.innerText.toLowerCase();
+
+    if(texto.includes(filtro)){
+      item.style.display = "";
+      visibles++;
+    } else {
+      item.style.display = "none";
+    }
+  });
+
+  // contador
+  if(filtro === ""){
+    contador.innerText = "Mostrando todos los resultados";
+  } else {
+    contador.innerText = "Resultados encontrados: " + visibles;
+  }
+
+  // sin resultados
+  sinResultados.style.display = visibles === 0 ? "block" : "none";
+});
+</script>
+
+</body>
+</html>
