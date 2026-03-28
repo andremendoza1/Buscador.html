@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Buscador de Carpetas</title>
+
+<style>
+body{
+  font-family:Arial, sans-serif;
+  padding:10px;
+  margin:0;
+}
+
+input{
+  width:100%;
+  padding:10px;
+  margin-bottom:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:14px;
+}
+
+.item{
+  padding:10px;
+  border:1px solid #eee;
+  border-radius:8px;
+  margin-bottom:8px;
+  background:white;
+  box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔍 BUSCADOR -->
+<input 
+  type="text" 
+  id="buscador" 
+  placeholder="🔍 Buscar carpeta (ej. 00216, BMW, ITALIKA)..."
+>
+
+<!-- 📂 LISTA -->
+<div id="lista">
+
+  <div class="item">
+    <strong>CI-FIDDS/E/UI-2 C/D/00216/02-2025</strong><br>
+    27 mar y 17 abr 2026<br>
+    <a href="#">Ver documento</a>
+  </div>
+
+  <div class="item">
+    <strong>CI-FIDE/C/UI-2 C/D/00316/08-2025</strong><br>
+    27 mar y 17 abr 2026<br>
+    <a href="#">Ver documento</a>
+  </div>
+
+  <div class="item">
+    <strong>CI-FIDDS/E/UI-3 C/D/00603/05-2024</strong><br>
+    27 mar y 17 abr 2026<br>
+    <a href="#">Ver documento</a>
+  </div>
+
+</div>
+
+<!-- ⚙️ FILTRO -->
+<script>
+document.getElementById("buscador").addEventListener("keyup", function() {
+  let filtro = this.value.toLowerCase();
+  let items = document.querySelectorAll(".item");
+
+  items.forEach(function(item) {
+    let texto = item.innerText.toLowerCase();
+    item.style.display = texto.includes(filtro) ? "" : "none";
+  });
+});
+</script>
+
+</body>
+</html>
